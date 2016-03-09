@@ -1,4 +1,8 @@
 <?php
+// JSON5 for PHP
+// [LICENSE] MIT
+// [URL] https://github.com/kujirahand/JSON5-PHP
+
 function json5_decode($json5) {
   return json5_value($json5);
 }
