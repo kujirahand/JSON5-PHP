@@ -24,6 +24,9 @@ multi line 4',
   // +/- value
   delta: +10,
 
+  // Infinity
+  value1: Infinity,
+
   // You can write commma after last element.
   hobby: [
     "Reading",
