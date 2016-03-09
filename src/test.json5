@@ -1,0 +1,34 @@
+// JSON5 Sample file
+
+// You can write comment in JSON Data.
+// line comment
+/* block comment */
+
+{
+  // No need quote key
+  name: "Mick",
+
+  // Multi line strings
+  memo: 'multi line 1\
+multi line 2\
+multi line 3\
+multi line 4',
+
+  // Hex value
+  red:  0xFF0000,
+  blue: 0x0000FF,
+
+  // float
+  half: .5,
+
+  // +/- value
+  delta: +10,
+
+  // You can write commma after last element.
+  hobby: [
+    "Reading",
+    "Movie",
+    "Piano", // <== allow to write comma
+  ]
+}
+
