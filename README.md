@@ -1,0 +1,2 @@
+# JSON5-PHP
+JSON5 for PHP
