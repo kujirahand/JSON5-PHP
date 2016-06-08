@@ -109,7 +109,7 @@ function json5_string(&$json5) {
 function json5_array(&$json5) {
   // skip '['
   $json5 = substr($json5, 1);
-  $res = [];
+  $res = array();
   while ($json5 != '') {
     json5_comment($json5);
     // Array terminator?
@@ -131,7 +131,7 @@ function json5_array(&$json5) {
 function json5_object(&$json5) {
   // skip '{'
   $json5 = substr($json5, 1);
-  $res = [];
+  $res = array();
   while ($json5 != '') {
     json5_comment($json5);
     // Object terminator?
