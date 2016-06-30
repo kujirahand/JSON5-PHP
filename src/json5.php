@@ -99,6 +99,10 @@ function json5_string(&$json5) {
         $json5 = substr($json5, 1);
         $str .= "\n"; continue;
       }
+      if(substr($json5, 0, 1) == $flag){
+        $json5 = substr($json5, 1);
+        $str .= "\\".$flag;continue;
+      }
     }
     $str .= $c;
   }

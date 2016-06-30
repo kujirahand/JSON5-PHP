@@ -32,6 +32,11 @@ multi line 4',
     "Reading",
     "Movie",
     "Piano", // <== allow to write comma
+  ],
+
+  // string escape
+  "key\"hobby\"":[
+    'Movie'
   ]
 }
 
