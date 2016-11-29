@@ -3,25 +3,25 @@
 // [LICENSE] MIT
 // [URL] https://github.com/kujirahand/JSON5-PHP
 
-function json5_decode($json5) {
-  return json5_value($json5);
+function json5_decode($json5, $assoc = false) {
+  return json5_value($json5, $assoc);
 }
 function json5_encode($obj) {
   return json_encode($obj);
 }
 
-function json5_value(&$json5) {
+function json5_value(&$json5, $assoc) {
   $json5 = trim($json5);
   json5_comment($json5); // skip comment
   // check 1char
   $c = substr($json5, 0, 1);
   // Object
   if ($c == '{') {
-    return json5_object($json5);
+    return json5_object($json5, $assoc);
   }
   // Array
   if ($c == '[') {
-    return json5_array($json5);
+    return json5_array($json5, $assoc);
   }
   // String
   if ($c == '"' || $c == "'") {
@@ -110,7 +110,7 @@ function json5_string(&$json5) {
   return $str;
 }
 // Array
-function json5_array(&$json5) {
+function json5_array(&$json5, $assoc) {
   // skip '['
   $json5 = substr($json5, 1);
   $res = array();
@@ -122,7 +122,7 @@ function json5_array(&$json5) {
       break;
     }
     // get value
-    $res[] = json5_value($json5);
+    $res[] = json5_value($json5, $assoc);
     // skip comma
     $json5 = ltrim($json5);
     if (substr($json5, 0, 1) == ',') {
@@ -132,10 +132,16 @@ function json5_array(&$json5) {
   return $res;
 }
 // Object
-function json5_object(&$json5) {
+function json5_object(&$json5, $assoc) {
   // skip '{'
   $json5 = substr($json5, 1);
-  $res = array();
+  if ($assoc) {
+    $res = array();
+  }
+  else {
+    $res = new \stdClass();
+  }
+
   while ($json5 != '') {
     json5_comment($json5);
     // Object terminator?
@@ -152,8 +158,15 @@ function json5_object(&$json5) {
       $key = trim(str_token($json5, ":"));
     }
     // get VALUE
-    $value = json5_value($json5);
-    $res[$key] = $value;
+    $value = json5_value($json5, $assoc);
+    
+    if ($assoc) {
+      $res[$key] = $value;
+    }
+    else {
+      $res->$key = $value;
+    }
+    
     // skip Comma
     $json5 = ltrim($json5);
     if (strncmp($json5, ',', 1) == 0) {
