@@ -14,7 +14,7 @@ JSON5 for PHP
 
 sample code
 
-```
+```php
 <?php
 require 'json5.php';
 $json5 = file_get_contents("test.json5");
@@ -24,7 +24,7 @@ var_dump($a);
 
 file: test.json5
 
-```
+```json5
 // json5 sample
 {
   // comment
